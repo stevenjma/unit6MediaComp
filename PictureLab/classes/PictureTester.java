@@ -17,6 +17,30 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testKeepOnlyBlue()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyBlue();
+    beach.explore();
+  }
+  
+  public static void testNegate()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.negate();
+    beach.explore();
+  }
+  
+  public static void testGreyscale()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.greyscale();
+    beach.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -83,6 +107,55 @@ public class PictureTester
     caterpillar.explore();
   }
   
+  public static void testMirrorArms()
+  {
+      Picture snowman = new Picture("snowman.jpg");
+      snowman.explore();
+      snowman.mirrorArms();
+      snowman.explore();
+  }
+  
+  public static void testMirrorGull()
+  {
+      Picture gull = new Picture("seagull.jpg");
+      gull.explore();
+      gull.mirrorGull();
+      gull.explore();
+  }
+  
+  public static void testFixUnderwater()
+  {
+      Picture water = new Picture("water.jpg");
+      water.explore();
+      water.fixUnderwater();
+      water.explore();
+  }
+  
+  public static void testCropAndCopy()
+  {
+      Picture water = new Picture("water.jpg");
+      Picture snowman = new Picture("snowman.jpg");
+      water.explore();
+      water.cropAndCopy(snowman, 100, 200, 200, 300, 30, 40);
+      water.explore();
+  }
+  
+  public static void testScaleByHalf()
+  {
+      Picture water = new Picture("water.jpg");
+      water.explore();
+      water.scaleByHalf();
+      water.explore();
+  }
+  
+  public static void testScaleByFactor()
+  {
+      Picture water = new Picture("water.jpg");
+      water.explore();
+      water.scaleByFactor(5);
+      water.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -90,11 +163,20 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
+    //testScaleByFactor();
+    testScaleByHalf();
+    //testCropAndCopy();
+    //testMirrorGull();
+    //testMirrorArms();
     //testZeroBlue();
+    //testKeepOnlyBlue();
+    //testNegate();
+    //testGreyscale();
+    //testFixUnderwater();
     //testMirrorVerticalRighttoLeft();
     //testMirrorHorizontal();
     //testMirrorHorizontalBottomtoTop();
-    testMirrorDiagonally();
+    //testMirrorDiagonally();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
