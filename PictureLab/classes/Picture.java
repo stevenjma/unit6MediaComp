@@ -141,6 +141,36 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void sepia()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    int grey = 0;
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        grey = pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue();
+        pixelObj.setRed(grey);
+        pixelObj.setGreen(grey);
+        pixelObj.setBlue(grey);
+        if (pixelObj.getRed() < 60)
+        {
+            pixelObj.setRed((int)0.9 * pixelObj.getRed()); 
+            pixelObj.setGreen((int)0.9 * pixelObj.getGreen()); 
+            pixelObj.setBlue((int)0.9 * pixelObj.getBlue());
+        }
+        else if (pixelObj.getRed() < 190)
+        {
+            pixelObj.setBlue((int)0.8 * pixelObj.getBlue());
+        }
+        else
+        {
+            pixelObj.setBlue((int)0.9 * pixelObj.getBlue());
+        }
+      }
+    }
+  }
+  
   public void fixUnderwater()
   {
     Pixel[][] pixels = this.getPixels2D();
