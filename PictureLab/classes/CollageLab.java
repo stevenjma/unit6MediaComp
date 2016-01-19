@@ -6,49 +6,29 @@ public class CollageLab
         Picture picture2 = new Picture("johncena.jpg");
         Picture picture3 = new Picture("johncena.jpg");
         Picture picture4 = new Picture("johncena.jpg");
-        Picture canvas = new Picture(720, 960);
+        Picture picture5 = new Picture("johncena.jpg");
+        Picture picture6 = new Picture("johncena.jpg");
+        Picture picture7 = new Picture("johncena.jpg");
+        Picture picture8 = new Picture("johncena.jpg");
+        Picture picture9 = new Picture("johncena.jpg");
+        Picture canvas = new Picture(1080, 1440);
         picture2.fixUnderwater();
         picture3.negate();
-        picture4.sepia();
-        picture4.negate();
-        Pixel[][] finalPic = canvas.getPixels2D();
-        Pixel pixel = null;
-        Pixel[][] pixels = picture1.getPixels2D();
-        for (int row = 0; row < pixels.length; row++)
-        {
-            for (int col = 0; col < pixels[0].length; col++)
-            {
-                pixel = pixels[row][col];
-                finalPic[row][col].setColor(pixel.getColor());
-            }
-        }
-        pixels = picture2.getPixels2D();
-        for (int row = 0; row < pixels.length; row++)
-        {
-            for (int col = 0; col < pixels[0].length; col++)
-            {
-                pixel = pixels[row][col];
-                finalPic[row + pixels.length][col].setColor(pixel.getColor());
-            }
-        }
-        pixels = picture3.getPixels2D();
-        for (int row = 0; row < pixels.length; row++)
-        {
-            for (int col = 0; col < pixels[0].length; col++)
-            {
-                pixel = pixels[row][col];
-                finalPic[row][col + pixels[0].length].setColor(pixel.getColor());
-            }
-        }
-        pixels = picture4.getPixels2D();
-        for (int row = 0; row < pixels.length; row++)
-        {
-            for (int col = 0; col < pixels[0].length; col++)
-            {
-                pixel = pixels[row][col];
-                finalPic[row + pixels.length][col + pixels[0].length].setColor(pixel.getColor());
-            }
-        }
+        picture4.otherEdgeDetect();
+        picture5.customPosterize(3);
+        picture6.mirrorDiagonally();
+        picture7.sepia();
+        picture8.posterize();
+        picture9.greyscale();
+        canvas.copy(picture1,0,0);
+        canvas.copy(picture2,360,480);
+        canvas.copy(picture3,360,0);
+        canvas.copy(picture4,0,480);
+        canvas.copy(picture5,720,0);
+        canvas.copy(picture6,720,480);
+        canvas.copy(picture7,720,960);
+        canvas.copy(picture8,0,960);
+        canvas.copy(picture9,360,960);
         canvas.explore();
     }
 }

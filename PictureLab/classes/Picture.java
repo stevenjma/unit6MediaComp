@@ -171,6 +171,163 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void posterize()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        if (pixelObj.getRed() < 63)
+        {
+            pixelObj.setRed(32);
+        }
+        else if (pixelObj.getRed() < 127)
+        {
+            pixelObj.setRed(64);
+        }
+        else if (pixelObj.getRed() < 191)
+        {
+            pixelObj.setRed(96);
+        }
+        else
+        {
+            pixelObj.setRed(128);
+        }
+        if (pixelObj.getBlue() < 63)
+        {
+            pixelObj.setBlue(32);
+        }
+        else if (pixelObj.getBlue() < 127)
+        {
+            pixelObj.setBlue(64);
+        }
+        else if (pixelObj.getBlue() < 191)
+        {
+            pixelObj.setBlue(96);
+        }
+        else
+        {
+            pixelObj.setBlue(128);
+        }
+        if (pixelObj.getGreen() < 63)
+        {
+            pixelObj.setGreen(32);
+        }
+        else if (pixelObj.getGreen() < 127)
+        {
+            pixelObj.setGreen(64);
+        }
+        else if (pixelObj.getGreen() < 191)
+        {
+            pixelObj.setGreen(96);
+        }
+        else
+        {
+            pixelObj.setGreen(128);
+        }
+      }
+    }
+  }
+  
+  public void customPosterize(int numberOfBins)
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    int thing = 255 / numberOfBins;
+    int num = thing / 2;
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        for (int i = 0; i < numberOfBins; i++)
+        {
+            if (pixelObj.getRed() < thing * i)
+            {
+                pixelObj.setRed(num * i);
+            }
+        }
+        for (int i = 0; i < numberOfBins; i++)
+        {
+            if (pixelObj.getBlue() < thing * i)
+            {
+                pixelObj.setBlue(num * i);
+            }
+        }
+        for (int i = 0; i < numberOfBins; i++)
+        {
+            if (pixelObj.getGreen() < thing * i)
+            {
+                pixelObj.setGreen(num *i);
+            }
+        }
+      }
+    }
+  }
+  
+  public void edgeDetect()
+  {
+      Pixel[][] pixels = this.getPixels2D();
+      Pixel pixel = null;
+      Pixel above = null;
+      for (int row = 1; row < pixels.length; row++)
+      {
+          for (int col = 0; col < pixels[0].length; col++)
+          {
+              pixel = pixels[row][col];
+              above = pixels[row - 1][col];
+              double distance = pixel.getAverage() - above.getAverage();
+              if (distance < 0)
+              {
+                  distance = 0 - distance;
+              }
+              if (distance > 50)
+              {
+                  pixel.setRed(0);
+                  pixel.setGreen(0);
+                  pixel.setBlue(0);
+              }
+              else
+              {
+                  pixel.setRed(255);
+                  pixel.setGreen(255);
+                  pixel.setBlue(255);
+              }
+          }
+      }
+  }
+  
+  public void otherEdgeDetect()
+  {
+      Pixel[][] pixels = this.getPixels2D();
+      Pixel pixel = null;
+      Pixel above = null;
+      for (int row = 0; row < pixels.length; row++)
+      {
+          for (int col = 1; col < pixels[0].length; col++)
+          {
+              pixel = pixels[row][col];
+              above = pixels[row ][col - 1];
+              double distance = pixel.getAverage() - above.getAverage();
+              if (distance < 0)
+              {
+                  distance = 0 - distance;
+              }
+              if (distance > 50)
+              {
+                  pixel.setRed(0);
+                  pixel.setGreen(0);
+                  pixel.setBlue(0);
+              }
+              else
+              {
+                  pixel.setRed(255);
+                  pixel.setGreen(255);
+                  pixel.setBlue(255);
+              }
+          }
+      }
+  }
+  
   public void fixUnderwater()
   {
     Pixel[][] pixels = this.getPixels2D();
