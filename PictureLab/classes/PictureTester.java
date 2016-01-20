@@ -142,17 +142,16 @@ public class PictureTester
   
   public static void testScaleByHalf()
   {
-      Picture water = new Picture("water.jpg");
+      Picture water = new Picture("cool stuff.jpg");
       water.explore();
-      water.scaleByHalf();
-      water.explore();
+      water.scaleByHalf().explore();
   }
   
   public static void testScaleByFactor()
   {
-      Picture water = new Picture("water.jpg");
+      Picture water = new Picture("cool stuff.jpg");
       water.explore();
-      water.scaleByFactor(5);
+      water.scaleByFactor(3);
       water.explore();
   }
   
@@ -163,8 +162,8 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    //testScaleByFactor();
-    testScaleByHalf();
+    testScaleByFactor();
+    //testScaleByHalf();
     //testCropAndCopy();
     //testMirrorGull();
     //testMirrorArms();

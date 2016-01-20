@@ -98,6 +98,18 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void zeroRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+      }
+    }
+  }
+  
   public void keepOnlyBlue()
   {
     Pixel[][] pixels = this.getPixels2D();
@@ -360,10 +372,11 @@ public class Picture extends SimplePicture
     } 
   }
   
-  public void scaleByHalf()
+  public Picture scaleByHalf()
   {
     Pixel[][] pixels = this.getPixels2D();
-    Pixel[][] pixels2 = pixels;
+    Picture picture = new Picture(pixels.length / 2, pixels[0].length / 2);
+    Pixel[][] pixels2 = picture.getPixels2D();
     Pixel pixel = null;
     int count = 0;
     for (int row = 0; row < pixels.length; row+=2)
@@ -371,31 +384,41 @@ public class Picture extends SimplePicture
       int innerCount = 0;
       for (int col = 0; col < pixels[0].length; col+=2)
       {
-        pixel = pixels2[row][col];
-        pixels[count][innerCount].setColor(pixel.getColor());
+        pixel = pixels[row][col];
+        pixels2[count][innerCount].setColor(pixel.getColor());
         innerCount++;
       }
       count++;
     } 
+    return picture;
   }
   
-  public void scaleByFactor(int factor)
+  public Picture scaleByFactor(int factor)
   {
     Pixel[][] pixels = this.getPixels2D();
-    Pixel[][] pixels2 = pixels;
+    Picture picture = new Picture(pixels.length / factor, pixels[0].length / factor);
+    Pixel[][] pixels2 = picture.getPixels2D();
     Pixel pixel = null;
     int count = 0;
     for (int row = 0; row < pixels.length; row+=factor)
     {
       int innerCount = 0;
-      for (int col = 0; col < pixels[0].length; col+=factor)
+      for (int col = 0; col < pixels2.length; col+=factor)
       {
-        pixel = pixels2[row][col];
-        pixels[count][innerCount].setColor(pixel.getColor());
-        innerCount++;
+        if (count > pixels.length || innerCount > pixels[0].length)
+        {
+            break;
+        }
+        else
+        {
+            pixel = pixels[row][col];
+            pixels2[count][innerCount].setColor(pixel.getColor());
+            innerCount++;
+        }
       }
       count++;
     } 
+    return picture;
   }
   
   /** Method that mirrors the picture around a 
