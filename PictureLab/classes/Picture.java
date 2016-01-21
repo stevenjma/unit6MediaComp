@@ -110,6 +110,18 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void zeroGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
   public void keepOnlyBlue()
   {
     Pixel[][] pixels = this.getPixels2D();

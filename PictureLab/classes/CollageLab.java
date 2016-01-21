@@ -17,7 +17,7 @@ public class CollageLab
         picture4.zeroBlue();
         picture5.zeroRed();
         picture6.mirrorDiagonally();
-        picture7.keepOnlyBlue();
+        picture7.zeroGreen();
         picture8.posterize();
         picture9.greyscale();
         canvas.copy(picture1,0,0);
