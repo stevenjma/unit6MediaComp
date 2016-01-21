@@ -403,9 +403,9 @@ public class Picture extends SimplePicture
     for (int row = 0; row < pixels.length; row+=factor)
     {
       int innerCount = 0;
-      for (int col = 0; col < pixels2.length; col+=factor)
+      for (int col = 0; col < pixels[0].length; col+=factor)
       {
-        if (count > pixels.length || innerCount > pixels[0].length)
+        if (((row += factor) > pixels.length) || ((col += factor) > pixels[0].length))
         {
             break;
         }
@@ -413,8 +413,8 @@ public class Picture extends SimplePicture
         {
             pixel = pixels[row][col];
             pixels2[count][innerCount].setColor(pixel.getColor());
-            innerCount++;
         }
+        innerCount++;
       }
       count++;
     } 

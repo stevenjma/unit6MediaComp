@@ -151,8 +151,7 @@ public class PictureTester
   {
       Picture water = new Picture("cool stuff.jpg");
       water.explore();
-      water.scaleByFactor(3);
-      water.explore();
+      water.scaleByFactor(3).explore();
   }
   
   /** Main method for testing.  Every class can have a main
